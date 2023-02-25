@@ -1,60 +1,57 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_print
 
 import 'package:flutter/material.dart';
+import './questions.dart';
 
 void main() {
-  runApp(const PerguntaApp());
+  runApp(AskApp());
 }
 
-class PerguntaAppState extends State<PerguntaApp> {
-  var perguntaSelecionada = 0;
+class AskApp extends StatefulWidget {
+  @override
+  State<AskApp> createState() => _AskAppState();
+}
 
-  void responder() {
+class _AskAppState extends State<AskApp> {
+  final ask = [
+    'Qual sua cor favorita?',
+    'Qual é seu animal favorito?',
+  ];
+
+  _awnser() {
     setState(() {
-      perguntaSelecionada++;
+      selectAnswer++;
     });
-    print(perguntaSelecionada);
+    print(selectAnswer);
   }
+
+  var selectAnswer = 0;
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      'Qual é a sua cor favorita?',
-      'Qual é o seu animal favorito?',
-    ];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Perguntas'),
+          title: Text('AskApp'),
         ),
         body: Column(
           children: [
-            Text(perguntas[perguntaSelecionada]),
+            Questions(ask[selectAnswer]),
             ElevatedButton(
-              onPressed: responder,
               child: Text('Resposta 1'),
+              onPressed: _awnser,
             ),
             ElevatedButton(
-              onPressed: responder,
               child: Text('Resposta 2'),
+              onPressed: _awnser,
             ),
             ElevatedButton(
-              onPressed: responder,
               child: Text('Resposta 3'),
+              onPressed: _awnser,
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-class PerguntaApp extends StatefulWidget {
-  const PerguntaApp({super.key});
-
-  @override
-  PerguntaAppState createState() {
-    return PerguntaAppState();
   }
 }
