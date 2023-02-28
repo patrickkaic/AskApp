@@ -1,7 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_print
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_print, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import './questions.dart';
+import './answers.dart';
 
 void main() {
   runApp(AskApp());
@@ -18,14 +19,14 @@ class _AskAppState extends State<AskApp> {
     'Qual é seu animal favorito?',
   ];
 
-  _awnser() {
-    setState(() {
-      selectAnswer++;
-    });
-    print(selectAnswer);
-  }
+  var _selectAnswer = 0;
 
-  var selectAnswer = 0;
+  _answersMain() {
+    setState(() {
+      _selectAnswer++;
+    });
+    print(_selectAnswer);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +37,10 @@ class _AskAppState extends State<AskApp> {
         ),
         body: Column(
           children: [
-            Questions(ask[selectAnswer]),
-            ElevatedButton(
-              child: Text('Resposta 1'),
-              onPressed: _awnser,
-            ),
-            ElevatedButton(
-              child: Text('Resposta 2'),
-              onPressed: _awnser,
-            ),
-            ElevatedButton(
-              child: Text('Resposta 3'),
-              onPressed: _awnser,
-            ),
+            Questions(ask[_selectAnswer]),
+            Answers(text: 'Resposta 1', onSelect: () {}),
+            Answers(text: 'Resposta 2', onSelect: () {}),
+            Answers(text: 'Resposta 3', onSelect: () {}),
           ],
         ),
       ),
