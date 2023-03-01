@@ -1,5 +1,4 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_print, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import './questions.dart';
 import './answers.dart';
@@ -21,7 +20,7 @@ class _AskAppState extends State<AskApp> {
 
   var _selectAnswer = 0;
 
-  _answersMain() {
+  _reply() {
     setState(() {
       _selectAnswer++;
     });
@@ -38,9 +37,9 @@ class _AskAppState extends State<AskApp> {
         body: Column(
           children: [
             Questions(ask[_selectAnswer]),
-            Answers(text: 'Resposta 1', onSelect: () {}),
-            Answers(text: 'Resposta 2', onSelect: () {}),
-            Answers(text: 'Resposta 3', onSelect: () {}),
+            Answers('Resposta 1', _reply),
+            Answers('Resposta 2', _reply),
+            Answers('Resposta 3', _reply),
           ],
         ),
       ),
