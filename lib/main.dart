@@ -38,7 +38,7 @@ class _AskAppState extends State<AskApp> {
       }
     ];
 
-    List<String> reponse = ask[_selectAnswer]['reposta'] as List<String>;
+    List<String> reponse = ask[_selectAnswer]['repostas'] as List<String>;
 
     return MaterialApp(
       home: Scaffold(
