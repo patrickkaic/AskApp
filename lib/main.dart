@@ -13,22 +13,33 @@ class AskApp extends StatefulWidget {
 }
 
 class _AskAppState extends State<AskApp> {
-  final ask = [
-    'Qual sua cor favorita?',
-    'Qual é seu animal favorito?',
-  ];
-
   var _selectAnswer = 0;
 
   _reply() {
     setState(() {
       _selectAnswer++;
     });
-    print(_selectAnswer);
   }
 
   @override
   Widget build(BuildContext context) {
+    final ask = [
+      {
+        'texto': 'Qual sua cor favorita?',
+        'repostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      },
+      {
+        'texto': 'Qual é seu animal favorito?',
+        'repostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      },
+      {
+        'texto': 'Qual é sua bomba favorita?',
+        'repostas': ['Trembolona', 'Hemogenin', 'Dianabol', ' Nandrolona']
+      }
+    ];
+
+    List<String> reponse = ask[_selectAnswer]['reposta'] as List<String>;
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -36,10 +47,8 @@ class _AskAppState extends State<AskApp> {
         ),
         body: Column(
           children: [
-            Questions(ask[_selectAnswer]),
-            Answers('Resposta 1', _reply),
-            Answers('Resposta 2', _reply),
-            Answers('Resposta 3', _reply),
+            Questions(ask[_selectAnswer]['texto'] as String),
+            ...reponse.map((t) => Answers(t, _reply)).toList(),
           ],
         ),
       ),
