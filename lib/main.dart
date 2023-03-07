@@ -14,6 +14,20 @@ class AskApp extends StatefulWidget {
 
 class _AskAppState extends State<AskApp> {
   var _selectAnswer = 0;
+  final _ask = const [
+    {
+      'texto': 'Qual sua cor favorita?',
+      'repostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual é seu animal favorito?',
+      'repostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      'texto': 'Qual é sua bomba favorita?',
+      'repostas': ['Trembolona', 'Hemogenin', 'Dianabol', ' Nandrolona']
+    }
+  ];
 
   _reply() {
     setState(() {
@@ -21,36 +35,32 @@ class _AskAppState extends State<AskApp> {
     });
   }
 
+  bool get selectAnswers {
+    return _selectAnswer < _ask.length;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ask = [
-      {
-        'texto': 'Qual sua cor favorita?',
-        'repostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
-      },
-      {
-        'texto': 'Qual é seu animal favorito?',
-        'repostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
-      },
-      {
-        'texto': 'Qual é sua bomba favorita?',
-        'repostas': ['Trembolona', 'Hemogenin', 'Dianabol', ' Nandrolona']
-      }
-    ];
-
-    List<String> reponse = ask[_selectAnswer]['repostas'] as List<String>;
-
+    List<String> reponse =
+        selectAnswers ? _ask[_selectAnswer]['repostas'] as List<String> : [];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('AskApp'),
         ),
-        body: Column(
-          children: [
-            Questions(ask[_selectAnswer]['texto'] as String),
-            ...reponse.map((t) => Answers(t, _reply)).toList(),
-          ],
-        ),
+        body: selectAnswers
+            ? Column(
+                children: [
+                  Questions(_ask[_selectAnswer]['texto'] as String),
+                  ...reponse.map((t) => Answers(t, _reply)).toList(),
+                ],
+              )
+            : Center(
+                child: Text(
+                  'Parabéns, você concluiu',
+                  style: TextStyle(fontSize: 28),
+                ),
+              ),
       ),
     );
   }
