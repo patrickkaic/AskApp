@@ -17,15 +17,30 @@ class _AskAppState extends State<AskApp> {
   final _ask = const [
     {
       'texto': 'Qual sua cor favorita?',
-      'repostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      'repostas': [
+        {'texto': 'Preto', 'nota': 10},
+        {'texto': 'Vermelho', 'nota': 8},
+        {'texto': 'Verde', 'nota': 5},
+        {'texto': 'Branco', 'nota': 7},
+      ],
     },
     {
       'texto': 'Qual é seu animal favorito?',
-      'repostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      'repostas': [
+        {'texto': 'Coelho', 'nota': 10},
+        {'texto': 'Cabra', 'nota': 3},
+        {'texto': 'Elefante', 'nota': 5},
+        {'texto': 'Leão', 'nota': 9},
+      ],
     },
     {
       'texto': 'Qual é sua bomba favorita?',
-      'repostas': ['Trembolona', 'Hemogenin', 'Dianabol', ' Nandrolona']
+      'repostas': [
+        {'texto': 'Trembolona', 'nota': 10},
+        {'texto': 'Hemogenin', 'nota': 3},
+        {'texto': 'Dianabol', 'nota': 5},
+        {'texto': 'Nandrolona', 'nota': 9},
+      ]
     }
   ];
 
