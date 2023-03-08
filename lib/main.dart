@@ -1,8 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_print, non_constant_identifier_names
 import 'package:flutter/material.dart';
-import './questions.dart';
-import './answers.dart';
 import './result.dart';
+import 'quiz.dart';
 
 void main() {
   runApp(AskApp());
@@ -42,20 +41,13 @@ class _AskAppState extends State<AskApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> reponse =
-        selectAnswers ? _ask[_selectAnswer]['repostas'] as List<String> : [];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('AskApp'),
         ),
         body: selectAnswers
-            ? Column(
-                children: [
-                  Questions(_ask[_selectAnswer]['texto'] as String),
-                  ...reponse.map((t) => Answers(t, _reply)).toList(),
-                ],
-              )
+            ? Quiz(_ask, _selectAnswer, _reply)
             : Result('Parabéns, você concluiu!!!'),
       ),
     );
