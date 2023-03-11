@@ -14,11 +14,12 @@ class AskApp extends StatefulWidget {
 
 class _AskAppState extends State<AskApp> {
   var _selectAnswer = 0;
+  var _totalPoints = 0;
   final _ask = const [
     {
       'texto': 'Qual sua cor favorita?',
       'repostas': [
-        {'texto': 'Preto', 'nota': 10},
+        {'texto': 'Preto', 'nota': 1},
         {'texto': 'Vermelho', 'nota': 8},
         {'texto': 'Verde', 'nota': 5},
         {'texto': 'Branco', 'nota': 7},
@@ -27,10 +28,10 @@ class _AskAppState extends State<AskApp> {
     {
       'texto': 'Qual é seu animal favorito?',
       'repostas': [
-        {'texto': 'Coelho', 'nota': 10},
+        {'texto': 'Coelho', 'nota': 2},
         {'texto': 'Cabra', 'nota': 3},
         {'texto': 'Elefante', 'nota': 5},
-        {'texto': 'Leão', 'nota': 9},
+        {'texto': 'Leão', 'nota': 6},
       ],
     },
     {
@@ -39,14 +40,25 @@ class _AskAppState extends State<AskApp> {
         {'texto': 'Trembolona', 'nota': 10},
         {'texto': 'Hemogenin', 'nota': 3},
         {'texto': 'Dianabol', 'nota': 5},
-        {'texto': 'Nandrolona', 'nota': 9},
+        {'texto': 'Nandrolona', 'nota': 6},
       ]
     }
   ];
 
-  _reply() {
+  _reply(int points) {
+    if (selectAnswers) {
+      setState(() {
+        _selectAnswer++;
+        _totalPoints += points;
+      });
+      print(_totalPoints);
+    }
+  }
+
+  _restart() {
     setState(() {
-      _selectAnswer++;
+      _selectAnswer = 0;
+      _totalPoints = 0;
     });
   }
 
@@ -59,11 +71,12 @@ class _AskAppState extends State<AskApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          elevation: 100,
           title: Text('AskApp'),
         ),
         body: selectAnswers
             ? Quiz(_ask, _selectAnswer, _reply)
-            : Result('Parabéns, você concluiu!!!'),
+            : Result(_totalPoints, _restart),
       ),
     );
   }
