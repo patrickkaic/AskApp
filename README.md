@@ -4,4 +4,6 @@ Aplicativo de perguntas usando conceitos basicos aprendidos no curso de Flutter 
 
 No momento o aplicativo conta com três perguntas simples, com alguns ElevationButton e uma tela final com mensagem!
 
-Iniciando o processo de divisão dos widgets...
+Iniciando o processo de divisão dos widgets.
+
+Feito divisão de paramentros em arquivos diferentes e reutilizando metodos.
